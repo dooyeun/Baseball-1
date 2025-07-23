@@ -18,7 +18,12 @@ public:
 			return { true, 3, 0 };
 		}
 
-		return {false, 0, 0 };
+		GuessResult gr{ false, 0, 0 };
+		if (guessNumber[0] == question[0]) gr.strikes += 1;
+		if (guessNumber[1] == question[1]) gr.strikes += 1;
+		if (guessNumber[2] == question[2]) gr.strikes += 1;
+
+		return gr;
 	}
 
 	void assertIllegalArgument(const std::string& guessNumber)
