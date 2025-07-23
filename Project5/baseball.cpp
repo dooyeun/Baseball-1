@@ -19,9 +19,10 @@ public:
 		}
 
 		GuessResult gr{ false, 0, 0 };
-		if (guessNumber[0] == question[0]) gr.strikes += 1;
-		if (guessNumber[1] == question[1]) gr.strikes += 1;
-		if (guessNumber[2] == question[2]) gr.strikes += 1;
+
+		for (int i = 0; i < 3; i++) {
+			if (guessNumber[i] == question[i]) gr.strikes += 1;
+		}
 
 		return gr;
 	}
