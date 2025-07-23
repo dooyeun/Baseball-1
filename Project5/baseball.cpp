@@ -14,23 +14,29 @@ public:
 		: question(question) { }
 	GuessResult guess(const string& guessNumber) {
 		assertIllegalArgument(guessNumber);
+		return getNumOfStrikesBalls(guessNumber);
+	}
+
+	GuessResult getNumOfStrikesBalls(const std::string& guessNumber)
+	{
+		GuessResult result{ false, 0, 0 };
+
 		if (guessNumber == question) {
-			return { true, 3, 0 };
+			return RESULT_MATCHED;
 		}
 
-		GuessResult gr{ false, 0, 0 };
-
 		for (int i = 0; i < 3; i++) {
-			if (guessNumber[i] == question[i]) gr.strikes += 1;
+			if (guessNumber[i] == question[i]) result.strikes += 1;
 		}
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (i == j) continue;
-				if (guessNumber[i] == question[j]) gr.balls += 1;
+				if (guessNumber[i] == question[j]) result.balls += 1;
 			}
 		}
-		return gr;
+
+		return result;
 	}
 
 	void assertIllegalArgument(const std::string& guessNumber)
@@ -57,5 +63,6 @@ public:
 	}
 
 private:
+	const GuessResult RESULT_MATCHED = { true, 3, 0 };
 	string question;
 };
