@@ -12,11 +12,13 @@ class Baseball {
 public:
 	explicit Baseball(const string& question)
 		: question(question) { }
+
 	GuessResult guess(const string& guessNumber) {
 		assertIllegalArgument(guessNumber);
 		return getNumOfStrikesBalls(guessNumber);
 	}
 
+private:
 	GuessResult getNumOfStrikesBalls(const std::string& guessNumber)
 	{
 		GuessResult result{ false, 0, 0 };
@@ -62,7 +64,6 @@ public:
 			|| guessNumber[1] == guessNumber[2];
 	}
 
-private:
 	const GuessResult RESULT_MATCHED = { true, 3, 0 };
 	string question;
 };
