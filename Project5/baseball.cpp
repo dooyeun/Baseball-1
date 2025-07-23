@@ -24,6 +24,12 @@ public:
 			if (guessNumber[i] == question[i]) gr.strikes += 1;
 		}
 
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (i == j) continue;
+				if (guessNumber[i] == question[j]) gr.balls += 1;
+			}
+		}
 		return gr;
 	}
 
